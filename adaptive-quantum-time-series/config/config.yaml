@@ -1,0 +1,104 @@
+# Default experiment configuration.
+# All error thresholds of the adaptive controller are in *normalised units*
+# (training range mapped to [-1, 1]); evaluation tolerances are in the
+# *original* signal units.
+
+experiment:
+  name: adaptive_pqc
+  seed: 42
+  output_dir: outputs
+  data_dir: data
+
+data:
+  length: 600
+  phase: 0.0
+  phase_mode: continuous        # continuous | instantaneous
+  train_fraction: 0.35          # [0, 210)   offline pre-training
+  val_fraction: 0.15            # [210, 300) offline validation; test = [300, 600)
+  regimes:
+    - {start: 0,   amplitude: 1.0, period: 24.0, noise_std: 0.05, label: stable}
+    - {start: 140, amplitude: 1.0, period: 12.0, noise_std: 0.05, label: frequency_jump}
+    - {start: 240, amplitude: 1.6, period: 12.0, noise_std: 0.12, label: amplitude_up_high_noise}
+    - {start: 350, amplitude: 0.7, period: 30.0, noise_std: 0.02, label: amplitude_down_low_noise}
+    - {start: 440, amplitude: 1.4, period: 16.0, noise_std: 0.06, label: amplitude_and_frequency_shift}
+    - {start: 520, amplitude: 1.0, period: 9.0,  noise_std: 0.10, label: fast_oscillation}
+
+features:
+  n_lags: 4
+  reduction: pca                # used only when n_lags > n_qubits: pca | reupload
+  headroom: 2.0                 # |z| up to 2x the training range stays un-clipped
+  angle_min: 0.0
+  angle_max: 3.141592653589793
+
+quantum:
+  n_qubits: 4
+  encoding: ry_rz               # ry | ry_rz | zz
+  encoding_entanglement: linear # none | linear | circular
+  entangler: cx                 # cx | cz
+  ansatz_layers: 2
+  rotation_gates: [ry, rz]
+  ansatz_entanglement: circular
+  readout_qubits: []            # [] = measure <Z> on every qubit
+  backend: aer                  # aer (AerSimulator statevector) | statevector (qiskit reference)
+  max_batch_size: 8192
+
+training:                       # offline, full-batch pre-training
+  iterations: 60
+  eval_every: 1
+  init_scale: 0.1
+  early_stopping_patience: 0
+  optimizer:
+    name: adam                  # adam (parameter-shift) | spsa | cobyla
+    learning_rate: 0.05
+    grad_clip: 5.0
+    l2_reg: 0.0
+
+online:                         # streaming test-then-train adaptation
+  steps_per_update: 2
+  update_every: 1
+  checkpoint_every: 100
+  optimizer:
+    name: adam
+    learning_rate: 0.03
+    grad_clip: 5.0
+    l2_reg: 0.0
+
+adaptive_window:
+  w_base: 30
+  w_min: 8
+  w_max: 60
+  tau_high: 0.25
+  tau_low: 0.08
+  gamma_down: 0.5
+  gamma_up: 1.25
+  error_smoothing: 0.5
+  cooldown: 2
+  patience_low: 3
+
+baselines:
+  fixed_windows: [10, 30, 50]
+  include_offline_only_pqc: true
+  mlp:
+    enabled: true
+    hidden_layers: [16]
+    learning_rate: 0.01
+    epochs: 200
+    alpha: 0.0001
+    online_window: 30
+    online_epochs: 2
+  lstm:
+    enabled: true
+    hidden_size: 16
+    learning_rate: 0.01
+    epochs: 200
+    online_window: 30
+    online_epochs: 2
+
+evaluation:
+  mape_min_abs_target: 0.1      # targets with |y| below this are excluded from MAPE
+  adaptation_tolerance: 0.2     # rolling MAE (original units) that counts as "recovered"
+  rolling_window: 5
+  shift_window: 15
+
+benchmark:
+  seeds: [0, 1, 2]

@@ -1,0 +1,95 @@
+# Lightweight smoke-test configuration: exercises the complete pipeline
+# (all models, evaluation, plots, reports) in well under a minute on a laptop.
+
+experiment:
+  name: smoke
+  seed: 7
+  output_dir: outputs
+  data_dir: data
+
+data:
+  length: 160
+  phase: 0.0
+  phase_mode: continuous
+  train_fraction: 0.4           # [0, 64)
+  val_fraction: 0.15            # [64, 88); test = [88, 160)
+  regimes:
+    - {start: 0,   amplitude: 1.0, period: 16.0, noise_std: 0.05, label: stable}
+    - {start: 50,  amplitude: 1.0, period: 10.0, noise_std: 0.05, label: frequency_jump}
+    - {start: 110, amplitude: 1.5, period: 10.0, noise_std: 0.10, label: amplitude_up}
+
+features:
+  n_lags: 3
+  reduction: pca
+  headroom: 2.0
+  angle_min: 0.0
+  angle_max: 3.141592653589793
+
+quantum:
+  n_qubits: 3
+  encoding: ry_rz
+  encoding_entanglement: linear
+  entangler: cx
+  ansatz_layers: 1
+  rotation_gates: [ry, rz]
+  ansatz_entanglement: circular
+  readout_qubits: []
+  backend: aer
+  max_batch_size: 8192
+
+training:
+  iterations: 8
+  eval_every: 1
+  init_scale: 0.1
+  early_stopping_patience: 0
+  optimizer:
+    name: adam
+    learning_rate: 0.08
+
+online:
+  steps_per_update: 1
+  update_every: 1
+  checkpoint_every: 0
+  optimizer:
+    name: adam
+    learning_rate: 0.05
+
+adaptive_window:
+  w_base: 10
+  w_min: 4
+  w_max: 20
+  tau_high: 0.25
+  tau_low: 0.08
+  gamma_down: 0.5
+  gamma_up: 1.25
+  error_smoothing: 0.5
+  cooldown: 1
+  patience_low: 2
+
+baselines:
+  fixed_windows: [5, 10, 15]
+  include_offline_only_pqc: true
+  mlp:
+    enabled: true
+    hidden_layers: [8]
+    learning_rate: 0.01
+    epochs: 20
+    alpha: 0.0001
+    online_window: 10
+    online_epochs: 1
+  lstm:
+    enabled: true
+    hidden_size: 8
+    learning_rate: 0.02
+    epochs: 20
+    online_window: 10
+    online_epochs: 1
+
+evaluation:
+  mape_min_abs_target: 0.1
+  adaptation_tolerance: 0.25
+  rolling_window: 3
+  shift_window: 8
+
+benchmark:
+  seeds: [7]

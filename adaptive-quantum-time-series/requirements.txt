@@ -1,0 +1,10 @@
+qiskit>=2.0,<3
+qiskit-aer>=0.17
+numpy>=2.0
+scipy>=1.14
+scikit-learn>=1.5
+matplotlib>=3.9
+pyyaml>=6.0
+pytest>=8.0
+pylatexenc>=2.11
+torch>=2.0
