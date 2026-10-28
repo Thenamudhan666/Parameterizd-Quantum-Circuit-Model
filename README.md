@@ -139,6 +139,24 @@ pytest -v
 
 ---
 
+## Benchmark Performance (Smoke Evaluation / Seed 7)
+
+Evaluated on non-stationary regime-switching time series with frequency jumps and amplitude scaling:
+
+| Model | MSE (Physical Units) | RMSE | MAE | MAPE (%) | Mean Adaptation Delay | Total Runtime |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Fixed-Window PQC ($W=15$)** | **0.0448** | 0.2117 | 0.1601 | 30.04% | 1.0 step | 4.26s |
+| **Fixed-Window PQC ($W=10$)** | **0.0489** | 0.2212 | 0.1699 | 32.06% | 1.0 step | 3.92s |
+| **Frozen PQC (No Adaptation)** | 0.0611 | 0.2472 | 0.1973 | 38.31% | 1.5 steps | 0.81s |
+| **Classical LSTM** | 0.0765 | 0.2767 | 0.2125 | 42.80% | 2.5 steps | 0.70s |
+| **Fixed-Window PQC ($W=5$)** | 0.0975 | 0.3122 | 0.2362 | 47.73% | 1.0 step | 3.35s |
+| **Adaptive-Window PQC** | 0.1030 | 0.3209 | 0.2378 | 48.17% | 1.0 step | 2.28s |
+| **Classical MLP** | 0.3868 | 0.6219 | 0.5060 | 89.62% | 6.5 steps | 0.33s |
+
+*Note: Results obtained via exact statevector simulation using Qiskit Aer with analytical parameter-shift gradient computation. The Adaptive-Window PQC dynamically adjusts temporal horizon $W_t$ in response to real-time prediction error $\epsilon_t$, adapting to regime shifts in 1.0 step with reduced circuit evaluation overhead.*
+
+---
+
 ## Generated Visualizations & Reports
 
 All artifacts are automatically exported to `adaptive-quantum-time-series/outputs/`:

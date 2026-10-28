@@ -14,8 +14,8 @@
       "mean_window": 4.305555555555555,
       "min_window": 4,
       "max_window": 5,
-      "total_predict_time_s": 0.5198722000277485,
-      "total_update_time_s": 1.4358120999968378,
+      "total_predict_time_s": 0.5683235000033164,
+      "total_update_time_s": 1.7102074999929755,
       "n_updates": 72,
       "n_failed_updates": 0,
       "n_optimizer_iterations": 72,
@@ -54,8 +54,8 @@
       "mean_window": 5.0,
       "min_window": 5,
       "max_window": 5,
-      "total_predict_time_s": 0.431664899981115,
-      "total_update_time_s": 1.3448096999854897,
+      "total_predict_time_s": 0.7421249000180978,
+      "total_update_time_s": 2.6097306000156095,
       "n_updates": 72,
       "n_failed_updates": 0,
       "n_optimizer_iterations": 72,
@@ -94,8 +94,8 @@
       "mean_window": 10.0,
       "min_window": 10,
       "max_window": 10,
-      "total_predict_time_s": 0.4564026999869384,
-      "total_update_time_s": 2.6876349999874947,
+      "total_predict_time_s": 0.555596099991817,
+      "total_update_time_s": 3.362156499970297,
       "n_updates": 72,
       "n_failed_updates": 0,
       "n_optimizer_iterations": 72,
@@ -134,8 +134,8 @@
       "mean_window": 15.0,
       "min_window": 15,
       "max_window": 15,
-      "total_predict_time_s": 0.47025150000990834,
-      "total_update_time_s": 3.4042428000248037,
+      "total_predict_time_s": 0.4864227999569266,
+      "total_update_time_s": 3.7769423999343417,
       "n_updates": 72,
       "n_failed_updates": 0,
       "n_optimizer_iterations": 72,
@@ -174,7 +174,7 @@
       "mean_window": 0.0,
       "min_window": 0,
       "max_window": 0,
-      "total_predict_time_s": 0.49543739994987845,
+      "total_predict_time_s": 0.8145081999973627,
       "total_update_time_s": 0.0,
       "n_updates": 0,
       "n_failed_updates": 0,
@@ -214,8 +214,8 @@
       "mean_window": 10.0,
       "min_window": 10,
       "max_window": 10,
-      "total_predict_time_s": 0.014254300003813114,
-      "total_update_time_s": 0.09720770001877099,
+      "total_predict_time_s": 0.04541429999517277,
+      "total_update_time_s": 0.28876540000055684,
       "n_updates": 72,
       "n_failed_updates": 0,
       "n_optimizer_iterations": 72,
@@ -254,8 +254,8 @@
       "mean_window": 10.0,
       "min_window": 10,
       "max_window": 10,
-      "total_predict_time_s": 0.10655769998265896,
-      "total_update_time_s": 0.4985567999901832,
+      "total_predict_time_s": 0.1557005999784451,
+      "total_update_time_s": 0.548138700054551,
       "n_updates": 72,
       "n_failed_updates": 0,
       "n_optimizer_iterations": 72,
@@ -295,7 +295,7 @@
       "mape_mean": 48.17083568274727,
       "mape_std": 0.0,
       "adaptation_delay_mean": 1.0,
-      "total_time_s_mean": 1.9556843000245863
+      "total_time_s_mean": 2.278530999996292
     },
     {
       "name": "Fixed-Window PQC (W=15)",
@@ -309,7 +309,7 @@
       "mape_mean": 30.037145730499788,
       "mape_std": 0.0,
       "adaptation_delay_mean": 1.0,
-      "total_time_s_mean": 3.874494300034712
+      "total_time_s_mean": 4.263365199891268
     },
     {
       "name": "Fixed-Window PQC (W=10)",
@@ -323,7 +323,7 @@
       "mape_mean": 32.05689999254074,
       "mape_std": 0.0,
       "adaptation_delay_mean": 1.0,
-      "total_time_s_mean": 3.144037699974433
+      "total_time_s_mean": 3.917752599962114
     },
     {
       "name": "Frozen PQC (No Adaptation)",
@@ -337,7 +337,7 @@
       "mape_mean": 38.314904867810476,
       "mape_std": 0.0,
       "adaptation_delay_mean": 1.5,
-      "total_time_s_mean": 0.49543739994987845
+      "total_time_s_mean": 0.8145081999973627
     },
     {
       "name": "Classical LSTM",
@@ -351,7 +351,7 @@
       "mape_mean": 42.797938939672555,
       "mape_std": 0.0,
       "adaptation_delay_mean": 2.5,
-      "total_time_s_mean": 0.6051144999728422
+      "total_time_s_mean": 0.7038393000329961
     },
     {
       "name": "Fixed-Window PQC (W=5)",
@@ -365,7 +365,7 @@
       "mape_mean": 47.725138392472374,
       "mape_std": 0.0,
       "adaptation_delay_mean": 1.0,
-      "total_time_s_mean": 1.7764745999666047
+      "total_time_s_mean": 3.3518555000337074
     },
     {
       "name": "Classical MLP",
@@ -379,7 +379,7 @@
       "mape_mean": 89.61931970996645,
       "mape_std": 0.0,
       "adaptation_delay_mean": 6.5,
-      "total_time_s_mean": 0.1114620000225841
+      "total_time_s_mean": 0.3341796999957296
     }
   ]
 }
