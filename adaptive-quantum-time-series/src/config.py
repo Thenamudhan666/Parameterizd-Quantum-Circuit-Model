@@ -74,14 +74,19 @@ class RegimeConfig:
 class DataConfig:
     """Synthetic data generation and chronological splitting."""
 
-    length: int
-    regimes: tuple[RegimeConfig, ...]
+    length: int = 500
+    regimes: tuple[RegimeConfig, ...] = (
+        RegimeConfig(start=0, amplitude=1.0, period=20.0, noise_std=0.05, label="stable"),
+    )
     phase: float = 0.0
     phase_mode: str = "continuous"
     train_fraction: float = 0.35
     val_fraction: float = 0.15
+    missing: str = "raise"
 
     def __post_init__(self) -> None:
+        if self.missing not in {"raise", "interpolate"}:
+            raise ValueError("missing must be 'raise' or 'interpolate'")
         if self.length < 30:
             raise ValueError("length must be >= 30 time steps")
         if not self.regimes:

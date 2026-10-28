@@ -100,7 +100,9 @@ class FixedWindowPolicy:
 class AdaptiveWindowController:
     """Error-driven window controller (see module docstring for the rules)."""
 
-    def __init__(self, cfg: AdaptiveWindowConfig) -> None:
+    def __init__(self, cfg: AdaptiveWindowConfig | None = None) -> None:
+        if cfg is None:
+            cfg = AdaptiveWindowConfig()
         self._cfg = cfg
         self._window = int(cfg.w_base)
         self._smoothed: float | None = None

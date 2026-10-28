@@ -172,7 +172,9 @@ class PQCModel:
     The flat parameter vector is ``params = [theta (P), w (R), b (1)]``.
     """
 
-    def __init__(self, cfg: QuantumConfig, n_features: int, seed: int = 0) -> None:
+    def __init__(self, cfg: QuantumConfig, n_features: int | None = None, seed: int = 0) -> None:
+        if n_features is None:
+            n_features = cfg.n_qubits
         self.config = cfg
         self.structure = build_pqc(cfg, n_features)
         self.n_features = n_features
@@ -188,6 +190,14 @@ class PQCModel:
     @property
     def circuit(self) -> QuantumCircuit:
         return self.structure.circuit
+
+    @property
+    def n_qubits(self) -> int:
+        return self.config.n_qubits
+
+    @property
+    def n_angles(self) -> int:
+        return self.n_theta
 
     @property
     def n_theta(self) -> int:

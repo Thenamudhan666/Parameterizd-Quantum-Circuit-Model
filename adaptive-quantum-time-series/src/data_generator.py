@@ -67,6 +67,24 @@ class SyntheticSeries:
     def __len__(self) -> int:
         return int(self.values.shape[0])
 
+    def splits(self, train_fraction: float, val_fraction: float) -> SplitIndices:
+        """Compute chronological split boundaries for this series."""
+        return split_indices(len(self), train_fraction, val_fraction)
+
+    def save_csv(self, path: Path) -> None:
+        """Export series to CSV file."""
+        p = Path(path)
+        p.parent.mkdir(parents=True, exist_ok=True)
+        header = "time,value,clean,amplitude,omega,noise_std,regime_id\n"
+        with p.open("w", encoding="utf-8", newline="") as fh:
+            fh.write(header)
+            for i in range(len(self)):
+                fh.write(
+                    f"{self.time[i]},{self.values[i]:.10f},{self.clean[i]:.10f},"
+                    f"{self.amplitude[i]:.6f},{self.omega[i]:.10f},"
+                    f"{self.noise_std[i]:.6f},{self.regime_id[i]}\n"
+                )
+
 
 def _piecewise(cfg: DataConfig, attr: str) -> np.ndarray:
     """Expand a per-regime attribute into a per-time-step array."""
@@ -202,3 +220,7 @@ def load_series(npz_path: Path, meta_path: Path) -> SyntheticSeries:
         regime_labels=tuple(meta["regime_labels"]),
         seed=int(meta["seed"]),
     )
+
+
+# Alias for backward and test compatibility
+generate_synthetic_series = generate_series

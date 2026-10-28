@@ -86,14 +86,33 @@ def fit_readout_head(
 
 def train_offline_pqc(
     model: PQCModel,
-    angles_train: np.ndarray,
-    y_train: np.ndarray,
-    angles_val: np.ndarray,
-    y_val: np.ndarray,
-    cfg: TrainingConfig,
-    seed: int,
+    arg2: Any,
+    arg3: Any,
+    arg4: Any,
+    arg5: Any,
+    arg6: Any = None,
+    seed: int = 0,
+    **kwargs: Any,
 ) -> OfflineResult:
     """Pre-train the PQC on the training split, selecting by validation MSE."""
+    if isinstance(arg2, TrainingConfig):
+        cfg = arg2
+        angles_train = np.asarray(arg3, dtype=float)
+        y_train = np.asarray(arg4, dtype=float).ravel()
+        angles_val = np.asarray(arg5, dtype=float)
+        y_val = np.asarray(arg6, dtype=float).ravel()
+    else:
+        angles_train = np.asarray(arg2, dtype=float)
+        y_train = np.asarray(arg3, dtype=float).ravel()
+        angles_val = np.asarray(arg4, dtype=float)
+        y_val = np.asarray(arg5, dtype=float).ravel()
+        if isinstance(arg6, TrainingConfig):
+            cfg = arg6
+        elif "cfg" in kwargs:
+            cfg = kwargs["cfg"]
+        else:
+            cfg = TrainingConfig()
+
     rng = np.random.default_rng(seed)
     evals_before = model.estimator.n_circuit_evaluations
     start = time.perf_counter()

@@ -31,3 +31,6 @@ ENV/
 .idea/
 *.swp
 *.swo
+
+# Testing
+.pytest_cache/

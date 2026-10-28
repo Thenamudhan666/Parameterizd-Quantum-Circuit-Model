@@ -1,0 +1,385 @@
+{
+  "experiment": "smoke",
+  "models": [
+    {
+      "name": "Adaptive-Window PQC",
+      "seed": 7,
+      "n_samples": 72,
+      "mse": 0.10297659649615756,
+      "rmse": 0.32089966733569164,
+      "mae": 0.2378274051316081,
+      "mape": 48.17083568274727,
+      "norm_mse": 0.1028943713806605,
+      "norm_mae": 0.23773243553781953,
+      "mean_window": 4.305555555555555,
+      "min_window": 4,
+      "max_window": 5,
+      "total_predict_time_s": 0.5198722000277485,
+      "total_update_time_s": 1.4358120999968378,
+      "n_updates": 72,
+      "n_failed_updates": 0,
+      "n_optimizer_iterations": 72,
+      "regime_shifts": [
+        {
+          "change_point_time": 50,
+          "regime_from": "stable",
+          "regime_to": "frequency_jump",
+          "pre_shift_mae": NaN,
+          "post_shift_mae": 0.13670031054787232,
+          "adaptation_delay_steps": 1,
+          "recovered": true
+        },
+        {
+          "change_point_time": 110,
+          "regime_from": "frequency_jump",
+          "regime_to": "amplitude_up",
+          "pre_shift_mae": 0.12028087671532742,
+          "post_shift_mae": 0.3309674771977477,
+          "adaptation_delay_steps": 1,
+          "recovered": true
+        }
+      ],
+      "mean_adaptation_delay": 1.0
+    },
+    {
+      "name": "Fixed-Window PQC (W=5)",
+      "seed": 7,
+      "n_samples": 72,
+      "mse": 0.09748867707959138,
+      "rmse": 0.3122317682100772,
+      "mae": 0.2362127533861491,
+      "mape": 47.725138392472374,
+      "norm_mse": 0.09741083397732084,
+      "norm_mae": 0.23611842855750145,
+      "mean_window": 5.0,
+      "min_window": 5,
+      "max_window": 5,
+      "total_predict_time_s": 0.431664899981115,
+      "total_update_time_s": 1.3448096999854897,
+      "n_updates": 72,
+      "n_failed_updates": 0,
+      "n_optimizer_iterations": 72,
+      "regime_shifts": [
+        {
+          "change_point_time": 50,
+          "regime_from": "stable",
+          "regime_to": "frequency_jump",
+          "pre_shift_mae": NaN,
+          "post_shift_mae": 0.13670031054787232,
+          "adaptation_delay_steps": 1,
+          "recovered": true
+        },
+        {
+          "change_point_time": 110,
+          "regime_from": "frequency_jump",
+          "regime_to": "amplitude_up",
+          "pre_shift_mae": 0.12028087671532742,
+          "post_shift_mae": 0.3341416462125075,
+          "adaptation_delay_steps": 1,
+          "recovered": true
+        }
+      ],
+      "mean_adaptation_delay": 1.0
+    },
+    {
+      "name": "Fixed-Window PQC (W=10)",
+      "seed": 7,
+      "n_samples": 72,
+      "mse": 0.04894966314805042,
+      "rmse": 0.22124570763757298,
+      "mae": 0.16994449004268072,
+      "mape": 32.05689999254074,
+      "norm_mse": 0.0489105776485987,
+      "norm_mae": 0.16987662755569344,
+      "mean_window": 10.0,
+      "min_window": 10,
+      "max_window": 10,
+      "total_predict_time_s": 0.4564026999869384,
+      "total_update_time_s": 2.6876349999874947,
+      "n_updates": 72,
+      "n_failed_updates": 0,
+      "n_optimizer_iterations": 72,
+      "regime_shifts": [
+        {
+          "change_point_time": 50,
+          "regime_from": "stable",
+          "regime_to": "frequency_jump",
+          "pre_shift_mae": NaN,
+          "post_shift_mae": 0.10786233862572862,
+          "adaptation_delay_steps": 1,
+          "recovered": true
+        },
+        {
+          "change_point_time": 110,
+          "regime_from": "frequency_jump",
+          "regime_to": "amplitude_up",
+          "pre_shift_mae": 0.11989478328782774,
+          "post_shift_mae": 0.29452029289667636,
+          "adaptation_delay_steps": 1,
+          "recovered": true
+        }
+      ],
+      "mean_adaptation_delay": 1.0
+    },
+    {
+      "name": "Fixed-Window PQC (W=15)",
+      "seed": 7,
+      "n_samples": 72,
+      "mse": 0.04483501030330714,
+      "rmse": 0.2117427928013304,
+      "mae": 0.16012594603944447,
+      "mape": 30.037145730499788,
+      "norm_mse": 0.044799210286352434,
+      "norm_mae": 0.16006200430807857,
+      "mean_window": 15.0,
+      "min_window": 15,
+      "max_window": 15,
+      "total_predict_time_s": 0.47025150000990834,
+      "total_update_time_s": 3.4042428000248037,
+      "n_updates": 72,
+      "n_failed_updates": 0,
+      "n_optimizer_iterations": 72,
+      "regime_shifts": [
+        {
+          "change_point_time": 50,
+          "regime_from": "stable",
+          "regime_to": "frequency_jump",
+          "pre_shift_mae": NaN,
+          "post_shift_mae": 0.11396346209105587,
+          "adaptation_delay_steps": 1,
+          "recovered": true
+        },
+        {
+          "change_point_time": 110,
+          "regime_from": "frequency_jump",
+          "regime_to": "amplitude_up",
+          "pre_shift_mae": 0.11102542715478689,
+          "post_shift_mae": 0.285649480184141,
+          "adaptation_delay_steps": 1,
+          "recovered": true
+        }
+      ],
+      "mean_adaptation_delay": 1.0
+    },
+    {
+      "name": "Frozen PQC (No Adaptation)",
+      "seed": 7,
+      "n_samples": 72,
+      "mse": 0.061120006169310966,
+      "rmse": 0.2472246067229372,
+      "mae": 0.19726684632994523,
+      "mape": 38.314904867810476,
+      "norm_mse": 0.061071202851494574,
+      "norm_mae": 0.19718807343893408,
+      "mean_window": 0.0,
+      "min_window": 0,
+      "max_window": 0,
+      "total_predict_time_s": 0.49543739994987845,
+      "total_update_time_s": 0.0,
+      "n_updates": 0,
+      "n_failed_updates": 0,
+      "n_optimizer_iterations": 0,
+      "regime_shifts": [
+        {
+          "change_point_time": 50,
+          "regime_from": "stable",
+          "regime_to": "frequency_jump",
+          "pre_shift_mae": NaN,
+          "post_shift_mae": 0.11487919359932727,
+          "adaptation_delay_steps": 1,
+          "recovered": true
+        },
+        {
+          "change_point_time": 110,
+          "regime_from": "frequency_jump",
+          "regime_to": "amplitude_up",
+          "pre_shift_mae": 0.15695327675072582,
+          "post_shift_mae": 0.2573203790998912,
+          "adaptation_delay_steps": 2,
+          "recovered": true
+        }
+      ],
+      "mean_adaptation_delay": 1.5
+    },
+    {
+      "name": "Classical MLP",
+      "seed": 7,
+      "n_samples": 72,
+      "mse": 0.38677588829282694,
+      "rmse": 0.6219130874107949,
+      "mae": 0.5059525302748684,
+      "mape": 89.61931970996645,
+      "norm_mse": 0.38646705411915594,
+      "norm_mae": 0.5057504925565914,
+      "mean_window": 10.0,
+      "min_window": 10,
+      "max_window": 10,
+      "total_predict_time_s": 0.014254300003813114,
+      "total_update_time_s": 0.09720770001877099,
+      "n_updates": 72,
+      "n_failed_updates": 0,
+      "n_optimizer_iterations": 72,
+      "regime_shifts": [
+        {
+          "change_point_time": 50,
+          "regime_from": "stable",
+          "regime_to": "frequency_jump",
+          "pre_shift_mae": NaN,
+          "post_shift_mae": 0.6420872032101819,
+          "adaptation_delay_steps": 5,
+          "recovered": true
+        },
+        {
+          "change_point_time": 110,
+          "regime_from": "frequency_jump",
+          "regime_to": "amplitude_up",
+          "pre_shift_mae": 0.49328988961218745,
+          "post_shift_mae": 0.9159407891657033,
+          "adaptation_delay_steps": 8,
+          "recovered": true
+        }
+      ],
+      "mean_adaptation_delay": 6.5
+    },
+    {
+      "name": "Classical LSTM",
+      "seed": 7,
+      "n_samples": 72,
+      "mse": 0.0765477472238842,
+      "rmse": 0.2766726354807866,
+      "mae": 0.21254886623852517,
+      "mape": 42.797938939672555,
+      "norm_mse": 0.07648662510904758,
+      "norm_mae": 0.21246399090855334,
+      "mean_window": 10.0,
+      "min_window": 10,
+      "max_window": 10,
+      "total_predict_time_s": 0.10655769998265896,
+      "total_update_time_s": 0.4985567999901832,
+      "n_updates": 72,
+      "n_failed_updates": 0,
+      "n_optimizer_iterations": 72,
+      "regime_shifts": [
+        {
+          "change_point_time": 50,
+          "regime_from": "stable",
+          "regime_to": "frequency_jump",
+          "pre_shift_mae": NaN,
+          "post_shift_mae": 0.4776300713416473,
+          "adaptation_delay_steps": 4,
+          "recovered": true
+        },
+        {
+          "change_point_time": 110,
+          "regime_from": "frequency_jump",
+          "regime_to": "amplitude_up",
+          "pre_shift_mae": 0.13539635970782354,
+          "post_shift_mae": 0.10825540226544161,
+          "adaptation_delay_steps": 1,
+          "recovered": true
+        }
+      ],
+      "mean_adaptation_delay": 2.5
+    }
+  ],
+  "aggregated": [
+    {
+      "name": "Adaptive-Window PQC",
+      "n_seeds": 1,
+      "mse_mean": 0.10297659649615756,
+      "mse_std": 0.0,
+      "rmse_mean": 0.32089966733569164,
+      "rmse_std": 0.0,
+      "mae_mean": 0.2378274051316081,
+      "mae_std": 0.0,
+      "mape_mean": 48.17083568274727,
+      "mape_std": 0.0,
+      "adaptation_delay_mean": 1.0,
+      "total_time_s_mean": 1.9556843000245863
+    },
+    {
+      "name": "Fixed-Window PQC (W=15)",
+      "n_seeds": 1,
+      "mse_mean": 0.04483501030330714,
+      "mse_std": 0.0,
+      "rmse_mean": 0.2117427928013304,
+      "rmse_std": 0.0,
+      "mae_mean": 0.16012594603944447,
+      "mae_std": 0.0,
+      "mape_mean": 30.037145730499788,
+      "mape_std": 0.0,
+      "adaptation_delay_mean": 1.0,
+      "total_time_s_mean": 3.874494300034712
+    },
+    {
+      "name": "Fixed-Window PQC (W=10)",
+      "n_seeds": 1,
+      "mse_mean": 0.04894966314805042,
+      "mse_std": 0.0,
+      "rmse_mean": 0.22124570763757298,
+      "rmse_std": 0.0,
+      "mae_mean": 0.16994449004268072,
+      "mae_std": 0.0,
+      "mape_mean": 32.05689999254074,
+      "mape_std": 0.0,
+      "adaptation_delay_mean": 1.0,
+      "total_time_s_mean": 3.144037699974433
+    },
+    {
+      "name": "Frozen PQC (No Adaptation)",
+      "n_seeds": 1,
+      "mse_mean": 0.061120006169310966,
+      "mse_std": 0.0,
+      "rmse_mean": 0.2472246067229372,
+      "rmse_std": 0.0,
+      "mae_mean": 0.19726684632994523,
+      "mae_std": 0.0,
+      "mape_mean": 38.314904867810476,
+      "mape_std": 0.0,
+      "adaptation_delay_mean": 1.5,
+      "total_time_s_mean": 0.49543739994987845
+    },
+    {
+      "name": "Classical LSTM",
+      "n_seeds": 1,
+      "mse_mean": 0.0765477472238842,
+      "mse_std": 0.0,
+      "rmse_mean": 0.2766726354807866,
+      "rmse_std": 0.0,
+      "mae_mean": 0.21254886623852517,
+      "mae_std": 0.0,
+      "mape_mean": 42.797938939672555,
+      "mape_std": 0.0,
+      "adaptation_delay_mean": 2.5,
+      "total_time_s_mean": 0.6051144999728422
+    },
+    {
+      "name": "Fixed-Window PQC (W=5)",
+      "n_seeds": 1,
+      "mse_mean": 0.09748867707959138,
+      "mse_std": 0.0,
+      "rmse_mean": 0.3122317682100772,
+      "rmse_std": 0.0,
+      "mae_mean": 0.2362127533861491,
+      "mae_std": 0.0,
+      "mape_mean": 47.725138392472374,
+      "mape_std": 0.0,
+      "adaptation_delay_mean": 1.0,
+      "total_time_s_mean": 1.7764745999666047
+    },
+    {
+      "name": "Classical MLP",
+      "n_seeds": 1,
+      "mse_mean": 0.38677588829282694,
+      "mse_std": 0.0,
+      "rmse_mean": 0.6219130874107949,
+      "rmse_std": 0.0,
+      "mae_mean": 0.5059525302748684,
+      "mae_std": 0.0,
+      "mape_mean": 89.61931970996645,
+      "mape_std": 0.0,
+      "adaptation_delay_mean": 6.5,
+      "total_time_s_mean": 0.1114620000225841
+    }
+  ]
+}

@@ -154,23 +154,42 @@ class FeatureReducer:
     scale: np.ndarray | None = None
 
     @classmethod
-    def fit(cls, X_train: np.ndarray, n_qubits: int, reduction: str) -> "FeatureReducer":
+    def fit(
+        cls,
+        X_train: np.ndarray,
+        n_qubits: int | str = 4,
+        reduction: str | int = "identity",
+        **kwargs: Any,
+    ) -> "FeatureReducer":
+        # Handle swapped or keyword arguments gracefully
+        if isinstance(n_qubits, str) and isinstance(reduction, int):
+            n_qubits, reduction = reduction, n_qubits
+        if "strategy" in kwargs:
+            reduction = kwargs["strategy"]
+        if "reduction" in kwargs:
+            reduction = kwargs["reduction"]
+        if "n_qubits" in kwargs:
+            n_qubits = kwargs["n_qubits"]
+
+        n_q = int(n_qubits)
+        red_str = str(reduction)
+
         X = np.asarray(X_train, dtype=float)
         n_lags = X.shape[1]
-        if n_lags <= n_qubits:
+        if n_lags <= n_q:
             return cls(strategy="identity", n_out=n_lags)
-        if reduction == "reupload":
+        if red_str == "reupload":
             return cls(strategy="reupload", n_out=n_lags)
-        if reduction != "pca":
-            raise ValueError(f"unknown reduction strategy '{reduction}'")
-        if X.shape[0] <= n_qubits:
+        if red_str != "pca":
+            raise ValueError(f"unknown reduction strategy '{red_str}'")
+        if X.shape[0] <= n_q:
             raise ValueError("PCA reduction needs more training samples than qubits")
         mean = X.mean(axis=0)
         _, _, vt = np.linalg.svd(X - mean, full_matrices=False)
-        components = vt[:n_qubits]
+        components = vt[:n_q]
         scores = (X - mean) @ components.T
         scale = np.maximum(np.abs(scores).max(axis=0), 1e-12)
-        return cls(strategy="pca", n_out=n_qubits, mean=mean, components=components, scale=scale)
+        return cls(strategy="pca", n_out=n_q, mean=mean, components=components, scale=scale)
 
     def transform(self, X: np.ndarray) -> np.ndarray:
         arr = np.asarray(X, dtype=float)
